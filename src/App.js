@@ -1,6 +1,7 @@
 import "./App.css";
-import Singup from "./Components/Signup/Singup";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { RouterProvider } from "react-router-dom";
+import route from "./Components/Router/Router";
 // import { getAuth } from "firebase/auth";
 // const auth = getAuth();
 
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
       <section>
-        <Singup></Singup>
+        <RouterProvider router={route}></RouterProvider>
       </section>
     </>
   );
