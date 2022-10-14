@@ -8,11 +8,12 @@ const auth = getAuth(app);
 
 const SignupFrom = () => {
   const [passwordError, setPasswordError] = useState("");
-
+  const [success, setSuccess] = useState("");
   const handelRegister = (event) => {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
     if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
       setPasswordError("Password must contain at least two uppercase letters");
@@ -35,9 +36,14 @@ const SignupFrom = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setSuccess(true);
+        form.reset();
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setPasswordError(errorMessage, errorCode);
+        setSuccess(false);
       });
   };
 
@@ -77,6 +83,7 @@ const SignupFrom = () => {
             />
           </Form.Group>
           <p className="text-danger">{passwordError}</p>
+          {success && <p className="text-success">Registration Successful</p>}
           <Button variant="primary" type="submit">
             Register
           </Button>
