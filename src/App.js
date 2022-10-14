@@ -1,16 +1,14 @@
 import "./App.css";
-import { getAuth } from "firebase/auth";
-const auth = getAuth();
+import Singup from "./Components/Signup/Singup";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import { getAuth } from "firebase/auth";
+// const auth = getAuth();
 
 function App() {
   return (
     <>
       <section>
-        <form action="">
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button type="submit">Login</button>
-        </form>
+        <Singup></Singup>
       </section>
     </>
   );
